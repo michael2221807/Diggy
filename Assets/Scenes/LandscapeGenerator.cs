@@ -50,9 +50,26 @@ public class LandscapeGenerator : MonoBehaviour
     {
         InitRandomState();
         GroundGenerator();
-        RockGenerator();
-        GrassGenerator();
-        TreeGenerator();
+        StartCoroutine(StartGenerate());
+    }
+
+    public IEnumerator StartGenerate()
+    {
+        int mulplier = 3;
+        float waitRock = rockCount * 0.01f * mulplier;
+        float waitTree = treeCount * 0.01f * mulplier;
+        float waitGrass = grassCount * 0.01f * mulplier;
+
+        WaitForSeconds wait = new WaitForSeconds(waitRock);
+        StartCoroutine(RockGenerator());
+        yield return wait;
+        wait = new WaitForSeconds(waitTree);
+        StartCoroutine(GrassGenerator());
+        yield return wait;
+        wait = new WaitForSeconds(waitGrass);
+        StartCoroutine(TreeGenerator());
+        yield return wait;
+
     }
 
     public void InitRandomState()
@@ -76,9 +93,9 @@ public class LandscapeGenerator : MonoBehaviour
 
     }
 
-    public void RockGenerator()
+    public IEnumerator RockGenerator()
     {
-
+        WaitForSeconds wait = new WaitForSeconds(0.01f);
         RaycastHit[] hits = new RaycastHit[rockCount];
         RaycastHit temphit;
         for (int i = 0; i < rockCount; i++)
@@ -99,14 +116,16 @@ public class LandscapeGenerator : MonoBehaviour
             Vector3 randScale = RandomScale(isUniform, rockScaleMin, rockScaleMax);
             rockClone.transform.localScale = randScale;
             rockClone.transform.rotation = Quaternion.Euler(Random.Range(0, 20), Random.Range(0, 360), Random.Range(0, 20));
-            BoxCollider boxCollider = rockClone.GetComponent<BoxCollider>();
-            boxCollider.size = Vector3.one;
+            // BoxCollider boxCollider = rockClone.GetComponent<BoxCollider>();
+            // boxCollider.size = Vector3.one;
+            yield return wait;
         }
     }
 
 
-    public void TreeGenerator()
+    public IEnumerator TreeGenerator()
     {
+        WaitForSeconds wait = new WaitForSeconds(0.01f);
         RaycastHit hit;
         for (int i = 0; i < treeCount; i++)
         {
@@ -118,13 +137,14 @@ public class LandscapeGenerator : MonoBehaviour
                 GameObject treeClone = Instantiate(selectedTree, hit.point, selectedTree.transform.rotation);
                 treeClone.transform.localScale = RandomScale(isUniform,treeScaleMin, treeScaleMax);
                 treeClone.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-
+                yield return wait;
             }
         }
     }
 
-    public void GrassGenerator()
+    public IEnumerator GrassGenerator()
     {
+        WaitForSeconds wait = new WaitForSeconds(0.01f);
         RaycastHit hit;
         for (int i = 0; i < grassCount; i++)
         {
@@ -134,8 +154,9 @@ public class LandscapeGenerator : MonoBehaviour
                 GameObject selectedGrass = grassObjects[Random.Range(0, grassObjects.Length)];
                 GameObject grassClone = Instantiate(selectedGrass, hit.point, selectedGrass.transform.rotation);
                 grassClone.transform.localScale = RandomScale(isUniform, grassScaleMin, grassScaleMax);
-                grassClone.transform.rotation = Quaternion.Euler(hit.normal);
-                
+                grassClone.transform.rotation *= Quaternion.Euler(hit.normal * 180 / Mathf.PI);
+                Debug.Log(hit.normal);
+                yield return wait;
 
             }
         }
