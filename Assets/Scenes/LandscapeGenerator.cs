@@ -64,26 +64,79 @@ public class LandscapeGenerator : MonoBehaviour
 
     public void GroundGenerator()
     {
+        
+        float scale = gameSize / 50;
         Vector3 randPosition = new Vector3(0,0,0);
         Vector3 randRotation = new Vector3(0, Random.Range(0, 360), 0);
         GameObject selectedGround = groundObjects[Random.Range(0, groundObjects.Length)];
+        //Debug.Log(selectedGround.transform.localScale);
+        //selectedGround.transform.localScale = RandomScale(isUniform, scale, scale);
+
         GameObject groundClone = Instantiate(selectedGround, randPosition, Quaternion.Euler(randRotation));
 
     }
 
     public void RockGenerator()
     {
-        RaycastHit hit;
+
+        RaycastHit[] hits = new RaycastHit[rockCount];
+        RaycastHit temphit;
         for (int i = 0; i < rockCount; i++)
         {
-            Vector3 randPosition = new Vector3(Random.Range(-gameSize/2, gameSize/2), 50, Random.Range(-gameSize / 2, gameSize / 2));
+            Vector3 randPosition = new Vector3(Random.Range(-gameSize / 2, gameSize / 2), 50, Random.Range(-gameSize / 2, gameSize / 2));
+            if (Physics.Raycast(randPosition, Vector3.down, out temphit))
+            {
+                hits[i] = temphit;
+            }
+
+        }
+
+        for (int i = 0; i < rockCount; i++)
+        {
+            RaycastHit hit = hits[i];
+            GameObject selectedRock = rockObjects[Random.Range(0, rockObjects.Length)];
+            GameObject rockClone = Instantiate(selectedRock, hit.point, selectedRock.transform.rotation);
+            Vector3 randScale = RandomScale(isUniform, rockScaleMin, rockScaleMax);
+            rockClone.transform.localScale = randScale;
+            rockClone.transform.rotation = Quaternion.Euler(Random.Range(0, 20), Random.Range(0, 360), Random.Range(0, 20));
+            BoxCollider boxCollider = rockClone.GetComponent<BoxCollider>();
+            boxCollider.size = Vector3.one;
+        }
+    }
+
+
+    public void TreeGenerator()
+    {
+        RaycastHit hit;
+        for (int i = 0; i < treeCount; i++)
+        {
+            Vector3 randPosition = new Vector3(Random.Range(-gameSize / 2, gameSize / 2), 50, Random.Range(-gameSize / 2, gameSize / 2));
             if (Physics.Raycast(randPosition, Vector3.down, out hit))
             {
-                GameObject selectedRock = rockObjects[Random.Range(0, rockObjects.Length)];
-                selectedRock.transform.localScale = RandomScale(isUniform, rockScaleMin, rockScaleMax);
-                GameObject rockClone = Instantiate(selectedRock, hit.point, selectedRock.transform.rotation);
-                rockClone.transform.rotation = Quaternion.Euler(Random.Range(0, 20), Random.Range(0, 360), Random.Range(0, 20));
                 
+                GameObject selectedTree = treeObjects[Random.Range(0, treeObjects.Length)];
+                GameObject treeClone = Instantiate(selectedTree, hit.point, selectedTree.transform.rotation);
+                treeClone.transform.localScale = RandomScale(isUniform,treeScaleMin, treeScaleMax);
+                treeClone.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+            }
+        }
+    }
+
+    public void GrassGenerator()
+    {
+        RaycastHit hit;
+        for (int i = 0; i < grassCount; i++)
+        {
+            Vector3 randPosition = new Vector3(Random.Range(-gameSize / 2, gameSize / 2), 50, Random.Range(-gameSize / 2, gameSize / 2));
+            if (Physics.Raycast(randPosition, Vector3.down, out hit))
+            {
+                GameObject selectedGrass = grassObjects[Random.Range(0, grassObjects.Length)];
+                GameObject grassClone = Instantiate(selectedGrass, hit.point, selectedGrass.transform.rotation);
+                grassClone.transform.localScale = RandomScale(isUniform, grassScaleMin, grassScaleMax);
+                grassClone.transform.rotation = Quaternion.Euler(hit.normal);
+                
+
             }
         }
     }
@@ -110,38 +163,14 @@ public class LandscapeGenerator : MonoBehaviour
         return new Vector3(1, Random.Range(min, max), 1);
     }
 
-    public void TreeGenerator()
+    private Vector3 RandomScaleX(float min, float max)
     {
-        RaycastHit hit;
-        for (int i = 0; i < treeCount; i++)
-        {
-            Vector3 randPosition = new Vector3(Random.Range(-gameSize / 2, gameSize / 2), 50, Random.Range(-gameSize / 2, gameSize / 2));
-            if (Physics.Raycast(randPosition, Vector3.down, out hit))
-            {
-                GameObject selectedTree = treeObjects[Random.Range(0, treeObjects.Length)];
-                selectedTree.transform.localScale = RandomScaleY(treeScaleMin, treeScaleMax);
-                GameObject treeClone = Instantiate(selectedTree, hit.point, selectedTree.transform.rotation);
-                treeClone.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-
-            }
-        }
+        return new Vector3(Random.Range(min, max), 1, 1);
     }
 
-    public void GrassGenerator()
+    private Vector3 RandomScaleZ(float min, float max)
     {
-        RaycastHit hit;
-        for (int i = 0; i < grassCount; i++)
-        {
-            Vector3 randPosition = new Vector3(Random.Range(-gameSize / 2, gameSize / 2), 50, Random.Range(-gameSize / 2, gameSize / 2));
-            if (Physics.Raycast(randPosition, Vector3.down, out hit))
-            {
-                GameObject selectedGrass = grassObjects[Random.Range(0, grassObjects.Length)];
-                selectedGrass.transform.localScale = RandomScale(isUniform, grassScaleMin, grassScaleMax);
-                GameObject grassClone = Instantiate(selectedGrass, hit.point, selectedGrass.transform.rotation);
-                grassClone.transform.rotation = Quaternion.Euler(hit.normal);
-
-            }
-        }
+        return new Vector3(1, 1, Random.Range(min, max));
     }
 
 }
