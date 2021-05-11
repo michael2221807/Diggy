@@ -306,6 +306,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: gameSeed
+      value: k
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: rockCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: treeCount
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: grassCount
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: rockScaleMin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: treeScaleMax
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: treeScaleMin
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: grassScaleMax
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: grassScaleMin
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
+      propertyPath: treeObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5328963244234002923, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: m_RootOrder
       value: 2
