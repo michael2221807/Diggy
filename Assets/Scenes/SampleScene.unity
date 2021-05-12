@@ -308,11 +308,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: gameSeed
-      value: k
+      value: ioi
       objectReference: {fileID: 0}
     - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: rockCount
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: treeCount
@@ -320,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: grassCount
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5328963244234002922, guid: 956585050ca64bc4b904507e92a1c12e, type: 3}
       propertyPath: rockScaleMin
