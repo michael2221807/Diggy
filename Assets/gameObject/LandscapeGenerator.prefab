@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8675022504801785295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8675022504801785289}
+  - component: {fileID: 8675022504801785288}
+  m_Layer: 0
+  m_Name: LandscapeGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8675022504801785289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675022504801785295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.726539, y: 6.383121, z: -16.276623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8675022504801785288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675022504801785295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1c8710575e4944db0708204e711a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSeed: jimmy
+  isUniform: 1
+  curSeed: 0
+  gameSize: 50
+  treeScaleMin: 1
+  treeScaleMax: 0.5
+  rockScaleMin: 0.2
+  rockScaleMax: 0.5
+  grassScaleMin: 0.8
+  grassScaleMax: 1.2
+  groundObjects:
+  - {fileID: 3969691067482364155, guid: 249eb3fab5fc5fa45bbd358ee0b1654a, type: 3}
+  rockObjects:
+  - {fileID: 148736, guid: 3a2c901a39dbab1429d598c99f830f11, type: 3}
+  - {fileID: 155052, guid: cac49ca5dd19de44283e8f70e6d63f33, type: 3}
+  - {fileID: 158710, guid: 290d8f74789de8b44bde6927f4e8c162, type: 3}
+  rockCount: 10
+  treeObjects:
+  - {fileID: 145506, guid: 8fd8833271a109840b39c7d5d317f13e, type: 3}
+  - {fileID: 196094, guid: 71d6e427409761140a02b08d6bd3fccd, type: 3}
+  - {fileID: 165430, guid: 8edd65e6d667fab44a17bfc83491f001, type: 3}
+  treeCount: 20
+  grassObjects:
+  - {fileID: 135544, guid: 238b71ad9f49264488e0af380e7eca8b, type: 3}
+  - {fileID: 189252, guid: cc957b04a70bdf04187142ab9d8a7f33, type: 3}
+  - {fileID: 155842, guid: af33bf1514ece2845845fbb68d1ca5ff, type: 3}
+  - {fileID: 169834, guid: a046bf9b8d2845a4baa366e3c7298672, type: 3}
+  - {fileID: 173864, guid: 55be384447729584fb1682d6f37d13c9, type: 3}
+  - {fileID: 154506, guid: 9ff3394075308d5459705bc7ba6f9f05, type: 3}
+  - {fileID: 116202, guid: 07886d789ff8fca438ce2556270fef4d, type: 3}
+  - {fileID: 117304, guid: fb2c82ae06fff4e4c90d7663130e603e, type: 3}
+  grassCount: 200
